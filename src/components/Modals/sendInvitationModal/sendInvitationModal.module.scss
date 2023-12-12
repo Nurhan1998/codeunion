@@ -1,0 +1,50 @@
+.wrapper {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 10px;
+
+  &__button {
+    border-radius: 15px;
+    background: #32C076;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+
+    span {
+      color: #F9FAFB;
+      text-align: center;
+      font-family: Futura PT, 'sans-serif';
+      font-size: 20px;
+      font-weight: 450;
+    }
+  }
+
+  &__input {
+    height: 60px;
+    border-radius: 15px;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .wrapper {
+    padding: 15px;
+
+    h2 {
+      line-height: 16px;
+      font-size: 16px;
+    }
+
+    &__button {
+      height: 30px;
+
+      span {
+        font-size: 16px;
+      }
+    }
+
+    &__input {
+      height: 30px;
+    }
+  }
+}

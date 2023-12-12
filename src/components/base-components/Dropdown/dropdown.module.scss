@@ -1,0 +1,80 @@
+.dropdown {
+  width: 100%;
+  height: 100%;
+
+  &__list {
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 222px;
+    padding: 20px;
+    border-radius: 15px;
+    background: #F9FAFB;
+    box-shadow: -30px 30px 50px 0px rgba(28, 28, 30, 0.10);
+  }
+
+  &__listRow {
+    display: flex;
+    width: 100%;
+    height: 20px;
+
+    &Title {
+      margin-left: 9px;
+      color: #424F5E;
+      font-family: Futura PT, serif;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px;
+    }
+
+  }
+
+  &__listWrapper {
+    height: 200px;
+    overflow-y: auto;
+  }
+
+  &__listRow:not(:first-child) {
+    margin-top: 15px;
+  }
+}
+
+.listController {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  border-radius: 15px;
+  width: 100%;
+
+  &Title {
+    text-align: center;
+    font-family: Futura PT, 'sans-serif';
+    font-size: 20px;
+    font-weight: 450;
+  }
+
+  &Img {
+    margin-left: 27px;
+
+    &_active {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .listController {
+    height: 30px;
+    border-radius: 10px;
+
+    &Title {
+      font-size: 16px;
+    }
+  }
+}
+

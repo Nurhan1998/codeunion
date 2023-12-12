@@ -1,0 +1,69 @@
+.wrapper {
+  position: relative;
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__title {
+    color: #424F5E;
+    text-align: center;
+    font-family: Futura PT, 'sans-serif';
+    font-size: 34px;
+    font-weight: 600;
+    margin-bottom: 17px;
+  }
+
+
+  &__input {
+    border-radius: 15px;
+    border: 1px solid #C1C1CB;
+    padding-right: 27px;
+
+    color: #9494A0;
+    font-family: Futura PT, 'sans-serif';
+    font-size: 20px;
+    font-weight: 400;
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+    height: 60px;
+  }
+
+  &__btn {
+    border-radius: 15px;
+    background: #32C076;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+
+    span {
+      color: #F9FAFB;
+      text-align: center;
+      font-family: Futura PT, 'sans-serif';
+      font-size: 20px;
+      font-weight: 450;
+    }
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .wrapper {
+    &__input {
+      height: 30px;
+      border-radius: 10px;
+    }
+
+    &__title {
+      font-size: 16px;
+    }
+
+    &__btn {
+      height: 30px;
+      border-radius: 10px;
+    }
+  }
+}

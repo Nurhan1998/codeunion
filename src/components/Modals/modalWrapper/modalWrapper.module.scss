@@ -1,0 +1,44 @@
+.wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 60px;
+  border: 1px solid #e7e7e7;
+  z-index: 999;
+  border-radius: 25px;
+  background: #F9FAFB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: -30px 30px 50px 0px rgba(28, 28, 30, 0.10);
+
+  &__icon {
+    width: 40px;
+    height: 40px;
+    background-color: #EBEBF0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    margin-left: auto;
+    position: absolute;
+    top: 26px;
+    right: 20px;
+
+    svg {
+      fill: #C1C1CB;
+    }
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .wrapper {
+    padding: 15px;
+
+    &__icon {
+      width: 5px;
+      height: 5px;
+    }
+  }
+}
