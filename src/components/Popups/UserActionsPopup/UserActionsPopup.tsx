@@ -41,6 +41,7 @@ export const UserActionsPopup: FC<IUserActionsProps> = ({ userData, cursorPositi
 
   const editUserHandler = () => {
     if(!userData) return;
+
     onClose();
     dispatch(setActiveModal(EModalNames.EDIT_USER));
     dispatch(setEditingUserData(userData));

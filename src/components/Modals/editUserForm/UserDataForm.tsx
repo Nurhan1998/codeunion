@@ -39,7 +39,6 @@ export const UserDataForm = () => {
   const [permissions, setPermissions] = useState<string[]>([]);
 
   const closeModal = () => {
-    console.log('closed');
     dispatch(setActiveModal(null));
   };
   const onSubmit = (values: FormFields) => {

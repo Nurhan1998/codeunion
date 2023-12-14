@@ -6,10 +6,6 @@ export const fieldsArray: Field<FormFields>[]  = [
     placeholder: 'Name',
   },
   {
-    name: 'email',
-    placeholder: 'Email',
-  },
-  {
     name: 'image',
     placeholder: 'Enter link to img',
   },

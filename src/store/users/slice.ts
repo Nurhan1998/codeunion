@@ -1,8 +1,9 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { IUsersState } from './types';
+import { EStorageKeys, setStorageData } from '../../shared';
+
+import { EModalNames, IBaseUser, IUsersState, TNullable } from './types';
 import { fetchInitialData } from './effects';
-import { userActions } from './actions';
 
 const initialState: IUsersState = {
   users: {
@@ -17,7 +18,34 @@ const initialState: IUsersState = {
 export const usersSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: { ...userActions },
+  reducers: {
+    createUser: (state: IUsersState, action:PayloadAction<IBaseUser> ) => {
+      if(!state.users.data) return;
+
+      state.users.data.push(action.payload);
+      setStorageData(EStorageKeys.USERS_DATA, JSON.stringify(state.users.data));
+    },
+    deleteUser: (state: IUsersState, action: PayloadAction<string>) => {
+      if(!state.users.data) return;
+
+      state.users.data = state.users.data.filter(item => item.email !== action.payload);
+      setStorageData(EStorageKeys.USERS_DATA, JSON.stringify(state.users.data));
+    },
+    editUser: (state, action: PayloadAction<IBaseUser>) => {
+      if(!state.users.data) return;
+
+      state.users.data = state.users.data.map(elem => {
+        const isCurrentUser = elem.email === action.payload.email;
+        return isCurrentUser ? action.payload : elem;
+      });
+    },
+    setEditingUserData: (state: IUsersState, action: PayloadAction<TNullable<IBaseUser>>) => {
+      state.editingUserData = action.payload;
+    },
+    setActiveModal: (state: IUsersState, action: PayloadAction<TNullable<EModalNames>>) => {
+      state.activeModal = action.payload;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(fetchInitialData.pending, state => {

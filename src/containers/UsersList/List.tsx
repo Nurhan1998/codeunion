@@ -22,15 +22,13 @@ import {
 } from '../../store/users';
 import { AppDispatch } from '../../store';
 import cn from '../../shared/utils/classNames';
-import { UserDataForm } from '../../components/Modals/editUserForm/UserDataForm';
 import { UserActionsPopup } from '../../components/Popups/UserActionsPopup/UserActionsPopup';
-import { ConfirmationModal } from '../../components/Modals/confirmationModal/ConfiramationModal';
 import { PointsIcon } from '../../components/Icons/PointsIcon';
 import { ICursorPosition } from '../../components/base-components';
 import { SearchIcon } from '../../components/Icons/SearchIcon';
-import { SendInvitationModal } from '../../components/Modals/sendInvitationModal/SendInvitationModal';
 
 import styles from './list.module.scss';
+import { getCurrentModal } from './utils';
 
 
 interface IDropdownState {
@@ -94,29 +92,11 @@ export const List = () => {
   };
 
 
-  const modalsList: Record<EModalNames,ReactNode> = useMemo(() => ({
-    [EModalNames.SEND_INVITATION_SUCCESS]:
-  <ConfirmationModal
-    onClose={handleCloseModal}
-    btnText="Закрыть"
-    title="Приглашение отправлено на почту example@email.com"
-  />,
-    [EModalNames.SEND_INVITATION]: <SendInvitationModal/>,
-    [EModalNames.CREATE_USER]: <UserDataForm/>,
-    [EModalNames.EDIT_USER]: <UserDataForm/>,
-    [EModalNames.DELETE_USER_SUCCESS]:
-  <ConfirmationModal
-    onClose={handleCloseModal}
-    title="Пользователь успешно удален"
-    btnText="Закрыть"
-  />,
-  }), [handleCloseModal]);
-
-
-  const currentModal = useCallback(() =>
-    activeModal !== null ? modalsList[activeModal] : null,
-  [activeModal, modalsList]
+  const currentModal = useMemo<ReactNode>(() =>
+    getCurrentModal(handleCloseModal, activeModal),
+  [handleCloseModal, activeModal]
   );
+
 
   return (
     <div className={styles.wrapper}>
@@ -188,11 +168,10 @@ export const List = () => {
                 </div>
               }
             />
-
           </AntdList.Item>
         )}
       />
-      <>{currentModal()}</>
+      <>{currentModal}</>
       {dropdownState.isOpened && dropdownState.cursorPosition && (
         <UserActionsPopup
           onClose={handleControlActionsDropdown}
