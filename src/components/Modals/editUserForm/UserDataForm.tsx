@@ -39,6 +39,7 @@ export const UserDataForm = () => {
   const [permissions, setPermissions] = useState<string[]>([]);
 
   const closeModal = () => {
+    dispatch(setEditingUserData(null));
     dispatch(setActiveModal(null));
   };
   const onSubmit = (values: FormFields) => {
@@ -61,11 +62,8 @@ export const UserDataForm = () => {
 
 
   useEffect(() => () => {
-    if(!activeModal) {
-      dispatch(setEditingUserData(null));
-      reset();
-    }
-  }, [dispatch, activeModal, reset]);
+    if(!editingUserData) reset();
+  }, [dispatch, reset]);
 
   useEffect(() => {
     if(editingUserData?.permissions)
